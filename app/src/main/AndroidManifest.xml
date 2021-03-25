@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidMidHomework10">
+        <activity android:name=".Ex3" android:screenOrientation="portrait" />
+        <activity android:name=".Ex2" android:screenOrientation="portrait" />
+        <activity android:name=".Ex1" android:screenOrientation="portrait" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

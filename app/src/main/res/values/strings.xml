@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Android-Mid-Homework-10</string>
+    <string name="chose_ex">Chose exercise from menu</string>
+    <string name="ex_1">EX 1</string>
+    <string name="ex_2">EX 2</string>
+    <string name="ex_3">EX 3</string>
+    <string name="android_studio">Android Studio</string>
+    <string name="_650_555_1234">(650) 555-1234</string>
+    <string name="google_voice">Google Voice</string>
+    <string name="_650_555_4321">(650) 555-4321</string>
+    <string name="mobile">Mobile</string>
+    <string name="work">Work</string>
+    <string name="studio_android_com">studio@android.com</string>
 </resources>
