@@ -11,4 +11,7 @@
     <string name="mobile">Mobile</string>
     <string name="work">Work</string>
     <string name="studio_android_com">studio@android.com</string>
+    <string name="roll">Roll</string>
+    <string name="reset">Reset</string>
+    <string name="throw_dice">Throw</string>
 </resources>
