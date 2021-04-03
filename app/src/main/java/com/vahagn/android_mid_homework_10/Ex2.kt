@@ -6,6 +6,8 @@ import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
@@ -34,6 +36,9 @@ class Ex2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ex2)
+
+        findViewById<TextView>(R.id.p1Name).text = MainActivity.players[0].name
+        findViewById<TextView>(R.id.p2Name).text = MainActivity.players[1].name
 
         rollButton = findViewById(R.id.rollButton)
         throwButton = findViewById(R.id.throwButton)
@@ -83,11 +88,26 @@ class Ex2 : AppCompatActivity() {
         var countDown: Int = 2
 
         override fun run() {
-            dice1.setImageDrawable(ContextCompat.getDrawable(this@Ex2, diceIds.shuffled().first()))
-            dice2.setImageDrawable(ContextCompat.getDrawable(this@Ex2, diceIds.shuffled().first()))
+            val p1DrawableId = diceIds.shuffled().first()
+            val p2DrawableId = diceIds.shuffled().first()
+
+            dice1.setImageDrawable(ContextCompat.getDrawable(this@Ex2, p1DrawableId))
+            dice2.setImageDrawable(ContextCompat.getDrawable(this@Ex2, p2DrawableId))
 
             if(countDown-- > 0) throwHandler.postDelayed(this, throwFrequency)
-            else resetButton.isEnabled = true
+            else {
+                resetButton.isEnabled = true
+                when {
+                    diceIds.indexOf(p1DrawableId) > diceIds.indexOf(p2DrawableId) -> {
+                        Toast.makeText(this@Ex2,"${MainActivity.players[0].name} win!", Toast.LENGTH_SHORT).show()
+                        MainActivity.players[0].score++
+                    }
+                    diceIds.indexOf(p1DrawableId) < diceIds.indexOf(p2DrawableId) -> {
+                        Toast.makeText(this@Ex2,"${MainActivity.players[1].name} win!", Toast.LENGTH_SHORT).show()
+                        MainActivity.players[1].score++
+                    } else -> Toast.makeText(this@Ex2,"Draw.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

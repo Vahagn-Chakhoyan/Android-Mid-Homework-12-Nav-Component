@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -23,6 +24,9 @@ class Ex3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ex3)
+
+        findViewById<TextView>(R.id.p1Name).text = MainActivity.players[0].name
+        findViewById<TextView>(R.id.p2Name).text = MainActivity.players[1].name
     }
 
     //*****************************************************
@@ -45,7 +49,8 @@ class Ex3 : AppCompatActivity() {
             field[this.first][this.second] = Pair(players[whichTurn].first, field[this.first][this.second].second)
             if(hasWon(this.first, this.second)) {
                 endGame = true
-                Toast.makeText(this@Ex3,"${players[whichTurn].first} win!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Ex3,"${MainActivity.players[whichTurn].name} win!", Toast.LENGTH_SHORT).show()
+                MainActivity.players[whichTurn].score++
             }
 
             changeTurn()

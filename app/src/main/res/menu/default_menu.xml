@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/menuEx1" android:title="@string/ex_1" app:showAsAction="collapseActionView"/>
-    <item android:id="@+id/menuEx2" android:title="@string/ex_2" app:showAsAction="collapseActionView"/>
-    <item android:id="@+id/menuEx3" android:title="@string/ex_3" app:showAsAction="collapseActionView"/>
-</menu>

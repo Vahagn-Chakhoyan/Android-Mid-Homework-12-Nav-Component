@@ -98,5 +98,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="dice1,dice2" />
+        app:constraint_referenced_ids="dice1,dice2,p1Name,p2Name" />
+
+    <TextView
+        android:id="@+id/p1Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/dice1"
+        app:layout_constraintEnd_toEndOf="@+id/dice1"
+        app:layout_constraintStart_toStartOf="@+id/dice1" />
+
+    <TextView
+        android:id="@+id/p2Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/p1Name"
+        app:layout_constraintEnd_toEndOf="@+id/dice2"
+        app:layout_constraintStart_toStartOf="@+id/dice2"
+        app:layout_constraintTop_toTopOf="@+id/p1Name" />
 </androidx.constraintlayout.widget.ConstraintLayout>
