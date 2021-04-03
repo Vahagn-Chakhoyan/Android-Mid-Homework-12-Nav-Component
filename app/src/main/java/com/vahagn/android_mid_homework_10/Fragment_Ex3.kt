@@ -1,16 +1,17 @@
 package com.vahagn.android_mid_homework_10
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
+import com.vahagn.android_mid_homework_10.databinding.FragmentEx3Binding
 
-class Ex3 : AppCompatActivity() {
+class Fragment_Ex3 : Fragment() {
     private var field = arrayOf(
         arrayOf(Pair(' ', R.id.imageView2), Pair(' ', R.id.imageView3), Pair(' ', R.id.imageView4)),
         arrayOf(Pair(' ', R.id.imageView5), Pair(' ', R.id.imageView6), Pair(' ', R.id.imageView7)),
@@ -21,12 +22,33 @@ class Ex3 : AppCompatActivity() {
     private var whichTurn = 0
     private var endGame = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ex3)
+    private var _binding: FragmentEx3Binding? = null
 
-        findViewById<TextView>(R.id.p1Name).text = MainActivity.players[0].name
-        findViewById<TextView>(R.id.p2Name).text = MainActivity.players[1].name
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentEx3Binding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.p1Name.text = MainActivity.players[0].name
+        binding.p2Name.text = MainActivity.players[1].name
+
+        binding.resetButton.setOnClickListener {reset()}
+
+        field.forEach {
+            it.forEach {
+                binding.root.findViewById<ImageView>(it.second).setOnClickListener{
+                    move(it)
+                }
+            }
+        }
     }
 
     //*****************************************************
@@ -42,14 +64,14 @@ class Ex3 : AppCompatActivity() {
         return null
     }
 
-    fun move(view: View) {
+    private fun move(view: View) {
         if(endGame) return
         findIndexes(view.id)?.apply {
-            (view as ImageView).setImageDrawable(ContextCompat.getDrawable(this@Ex3, players[whichTurn].second.first))
+            (view as ImageView).setImageDrawable(ContextCompat.getDrawable(requireContext(), players[whichTurn].second.first))
             field[this.first][this.second] = Pair(players[whichTurn].first, field[this.first][this.second].second)
             if(hasWon(this.first, this.second)) {
                 endGame = true
-                Toast.makeText(this@Ex3,"${MainActivity.players[whichTurn].name} win!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"${MainActivity.players[whichTurn].name} win!", Toast.LENGTH_SHORT).show()
                 MainActivity.players[whichTurn].score++
             }
 
@@ -64,11 +86,10 @@ class Ex3 : AppCompatActivity() {
 
     private fun setTurnVisually(playerIndex: Int) {
         ConstraintSet().apply {
-            val baseLayout = findViewById<ConstraintLayout>(R.id.baseLayout)
-            clone(baseLayout)
+            clone(binding.root)
             connect(R.id.turnArrow, ConstraintSet.START, players[playerIndex].second.second, ConstraintSet.START)
             connect(R.id.turnArrow, ConstraintSet.END, players[playerIndex].second.second, ConstraintSet.END)
-            applyTo(baseLayout)
+            applyTo(binding.root)
         }
     }
 
@@ -94,7 +115,7 @@ class Ex3 : AppCompatActivity() {
         return false
     }
 
-    fun reset(view: View) {
+    private fun reset() {
         field = arrayOf(
             arrayOf(Pair(' ', R.id.imageView2), Pair(' ', R.id.imageView3), Pair(' ', R.id.imageView4)),
             arrayOf(Pair(' ', R.id.imageView5), Pair(' ', R.id.imageView6), Pair(' ', R.id.imageView7)),
@@ -103,7 +124,7 @@ class Ex3 : AppCompatActivity() {
 
         field.forEach {
             it.forEach {
-                findViewById<ImageView>(it.second).setImageDrawable(null)
+                binding.root.findViewById<ImageView>(it.second).setImageDrawable(null)
             }
         }
 

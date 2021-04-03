@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/playerNames">
+
+    <fragment
+        android:id="@+id/playerNamesEdit"
+        android:name="com.vahagn.android_mid_homework_10.PlayerNamesEdit"
+        android:label="fragment_player_names_edit"
+        tools:layout="@layout/fragment_player_names_edit" />
+    <fragment
+        android:id="@+id/playerNames"
+        android:name="com.vahagn.android_mid_homework_10.PlayerNames"
+        android:label="fragment_player_names"
+        tools:layout="@layout/fragment_player_names" >
+        <action
+            android:id="@+id/goToEdit"
+            app:destination="@id/playerNamesEdit" />
+        <action
+            android:id="@+id/goToEx3"
+            app:destination="@id/fragment_Ex3" />
+        <action
+            android:id="@+id/goToEx2"
+            app:destination="@id/fragment_Ex2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_Ex2"
+        android:name="com.vahagn.android_mid_homework_10.Fragment_Ex2"
+        android:label="fragment__ex2"
+        tools:layout="@layout/fragment__ex2" />
+    <fragment
+        android:id="@+id/fragment_Ex3"
+        android:name="com.vahagn.android_mid_homework_10.Fragment_Ex3"
+        android:label="fragment__ex3"
+        tools:layout="@layout/fragment__ex3" />
+</navigation>

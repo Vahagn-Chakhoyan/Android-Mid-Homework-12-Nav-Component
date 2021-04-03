@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ex2">
+    tools:context=".Fragment_Ex2">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -32,7 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@android:color/holo_orange_light"
-        android:onClick="roll"
         android:text="@string/roll"
         app:layout_constraintEnd_toStartOf="@+id/throwButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -45,7 +45,6 @@
         android:layout_height="wrap_content"
         android:background="@android:color/holo_green_light"
         android:enabled="false"
-        android:onClick="throwDice"
         android:text="@string/throw_dice"
         app:layout_constraintBottom_toBottomOf="@+id/rollButton"
         app:layout_constraintEnd_toStartOf="@+id/resetButton"
@@ -59,7 +58,6 @@
         android:layout_height="wrap_content"
         android:background="@android:color/holo_red_light"
         android:enabled="false"
-        android:onClick="reset"
         android:text="@string/reset"
         app:layout_constraintBottom_toBottomOf="@+id/throwButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,4 +117,5 @@
         app:layout_constraintEnd_toEndOf="@+id/dice2"
         app:layout_constraintStart_toStartOf="@+id/dice2"
         app:layout_constraintTop_toTopOf="@+id/p1Name" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
